@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Patwari Land Calculator</title>
+
+<style>
+body{
+    margin:0;
+background:#f4f8fc;
+font-family:Arial,sans-serif;
+}
+
+.header{
+    background:blue;
+    color:white;
+    text-align:center;
+    padding:20px;
+    font-size:30px;
+    font-weight:bold;
+box-shadow:0 2px 10px rgba(0,0,0,0.3);
+letter-spacing:2px;
+}
+.result{
+    background:#e8f0fe;
+    padding:15px;
+    margin-top:20px;
+    font-size:20px;
+    font-weight:bold;
+    border-radius:10px;
+    border-left:6px solid blue;
+}
+input{
+    padding:8px;
+    border:2px solid #4CAF50;
+    border-radius:5px;
+    font-size:16px;
+    background:#f0fff0;
+}
+input:focus{
+    outline:none;
+    border-color:#0066cc;
+    box-shadow:0 0 8px #66a3ff;
+}
+h2{
+    color:#003366;
+}
+button{
+background:blue;
+color:white;
+padding:10px;
+margin:5px;
+border:none;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+button:hover{
+background:#003d99;
+transform:scale(1.05);
+}
+.container{
+padding:20px;
+}
+
+input{
+width:250px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+🧮 🏞️ PATWARI LAND CALCULATOR
+</div>
+<div class="container">
+<h2>Entry 1</h2>
+Kanal
+<input type="number" id="k1">
+
+Marla
+<input type="number" id="m1">
+
+SFT
+<input type="number" id="s1">
+
+<h2>Entry 2</h2>
+Kanal
+<input type="number" id="k2">
+
+Marla
+<input type="number" id="m2">
+
+SFT
+<input type="number" id="s2">
+<h3>Multiply / Divide Number</h3>
+
+<input type="number" id="num" value="1">
+<h2>Decimal Marla to SFT</h2>
+
+<input type="number" step="0.01" id="decimalMarla">
+
+<button onclick="convertMarla()">Convert</button>
+<button onclick="addArea()">Add</button>
+<button onclick="subtractArea()">Subtract</button>
+
+<button onclick="multiplyArea()">Multiply</button>
+
+<button onclick="divideArea()">Divide</button>
+<br><br>
+<button onclick="clearFields()">Clear</button>
+<button onclick="window.print()">Print</button>
+<div class="result"id="result">
+Result will appear here
+</div>
+<script>
+
+function testButton()
+{
+document.getElementById("result").innerHTML =
+"Calculator Working Successfully";
+}
+
+</script>
+<script>
+
+function addArea()
+{
+
+if(
+document.getElementById("k1").value=="" ||
+document.getElementById("k2").value==""
+)
+{
+alert("Please Enter Values");
+return;
+}
+let k1 =
+document.getElementById("k1").value;
+
+let m1 =
+document.getElementById("m1").value;
+
+let s1 =
+document.getElementById("s1").value;
+let k2 =
+document.getElementById("k2").value;
+
+let m2 =
+document.getElementById("m2").value;
+
+let s2 =
+document.getElementById("s2").value;
+let totalSft =
+(Number(k1) * 5445) +
+(Number(m1) * 272.25) +
+Number(s1) +
+
+(Number(k2) * 5445) +
+(Number(m2) * 272.25) +
+Number(s2);
+let finalKanal = Math.floor(totalSft / 5445);
+
+let remainingSft = totalSft % 5445;
+
+let finalMarla = Math.floor(remainingSft / 272.25);
+
+let finalSft = (remainingSft % 272.25).toFixed(2);
+document.getElementById("result").innerHTML =
+"Final Kanal = " + finalKanal +
+"<br>Final Marla = " + finalMarla +
+"<br>Final SFT = " + finalSft;
+}
+</script>
+<script>
+
+function subtractArea()
+{
+let k1 = Number(document.getElementById("k1").value);
+let m1 = Number(document.getElementById("m1").value);
+let s1 = Number(document.getElementById("s1").value);
+
+let k2 = Number(document.getElementById("k2").value);
+let m2 = Number(document.getElementById("m2").value);
+let s2 = Number(document.getElementById("s2").value);
+
+let area1 =
+(k1 * 5445) +
+(m1 * 272.25) +
+s1;
+
+let area2 =
+(k2 * 5445) +
+(m2 * 272.25) +
+s2;
+
+let remainingArea = area1 - area2;
+
+let finalKanal = Math.floor(remainingArea / 5445);
+
+let balance = remainingArea % 5445;
+
+let finalMarla = Math.floor(balance / 272.25);
+
+let finalSft = (balance % 272.25).toFixed(2);
+
+document.getElementById("result").innerHTML =
+"Remaining Kanal = " + finalKanal +
+"<br>Remaining Marla = " + finalMarla +
+"<br>Remaining SFT = " + finalSft;
+
+}
+
+</script>
+<script>
+
+function multiplyArea()
+{
+let k1 = Number(document.getElementById("k1").value);
+let m1 = Number(document.getElementById("m1").value);
+let s1 = Number(document.getElementById("s1").value);
+
+let n = Number(document.getElementById("num").value);
+
+let totalKanal = k1 * n;
+let totalMarla = m1 * n;
+let totalSft = s1 * n;
+let areaSft =
+(k1 * 5445) +
+(m1 * 272.25) +
+s1;
+
+let totalSftResult = areaSft * n;
+
+let finalKanal = Math.floor(totalSftResult / 5445);
+let balance = totalSftResult % 5445;
+
+let finalMarla = Math.floor(balance / 272.25);
+let finalSft = (balance % 272.25).toFixed(2);
+document.getElementById("result").innerHTML =
+"Total Kanal = " + finalKanal +
+"<br>Total Marla = " + finalMarla +
+"<br>Total SFT = " + finalSft;
+
+}
+
+</script>
+<script>
+
+function divideArea()
+{
+let k1 = Number(document.getElementById("k1").value);
+let m1 = Number(document.getElementById("m1").value);
+let s1 = Number(document.getElementById("s1").value);
+
+let n = Number(document.getElementById("num").value);
+
+let areaSft =
+(k1 * 5445) +
+(m1 * 272.25) +
+s1;
+
+let totalSftResult = areaSft / n;
+
+let finalKanal = Math.floor(totalSftResult / 5445);
+let balance = totalSftResult % 5445;
+
+let finalMarla = Math.floor(balance / 272.25);
+let finalSft = (balance % 272.25).toFixed(2);
+
+document.getElementById("result").innerHTML =
+"Total Kanal = " + finalKanal +
+"<br>Total Marla = " + finalMarla +
+"<br>Total SFT = " + finalSft;
+
+}
+
+</script>
+
+<script>
+function convertMarla()
+{
+let value =
+Number(document.getElementById("decimalMarla").value);
+let marla =
+Math.floor(value);
+
+let sft =
+((value - marla) * 272.25).toFixed(2);
+
+document.getElementById("result").innerHTML =
+marla + " Marla " + sft + " SFT";
+}
+function clearFields()
+{
+document.getElementById("k1").value = "";
+document.getElementById("m1").value = "";
+document.getElementById("s1").value = "";
+
+document.getElementById("k2").value = "";
+document.getElementById("m2").value = "";
+document.getElementById("s2").value = "";
+
+document.getElementById("decimalMarla").value = "";
+
+document.getElementById("result").innerHTML =
+"Result will appear here";
+}
+</script>
+</div>
+<hr>
+
+<center>
+Developed by Mr.Sajad Hussain Dar
+<br>
+Revenue Cleark
+<br>
+Flood Spill Channel Division Narbal
+</center>
+</body>
+</html>
