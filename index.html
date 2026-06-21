@@ -417,15 +417,22 @@ Flood Spill Channel Division Narbal
 
 <br><br>
 
-<button onclick="calcSin()" style="background:green;">sin</button>
+<button onclick="calcSin()" class="add-btn">sin</button>
+<button onclick="calcCos()" class="subtract-btn">cos</button>
+<button onclick="calcTan()" class="multiply-btn">tan</button>
+<button onclick="calcSqrt()" class="divide-btn">√</button>
+<button onclick="calcSquare()" class="convert-btn">x²</button>
 
-<button onclick="calcCos()" style="background:red;">cos</button>
+<button onclick="calcCube()" style="background:teal;">x³</button>
+<button onclick="calcLog()" style="background:brown;">log</button>
+<button onclick="calcLn()" style="background:darkgreen;">ln</button>
 
-<button onclick="calcTan()" style="background:orange;">tan</button>
+<button onclick="calcExp()" style="background:darkred;">eˣ</button>
+<button onclick="calcPow10()" style="background:darkblue;">10ˣ</button>
 
-<button onclick="calcSqrt()" style="background:purple;">√</button>
-
-<button onclick="calcSquare()" style="background:brown;">x²</button>
+<button onclick="calcFactorial()" style="background:purple;">n!</button>
+<button onclick="calcInverse()" style="background:orange;">1/x</button>
+<button onclick="calcPercent()" style="background:black;">%</button>
 
 <div class="result" id="sciResult"></div>
 </div>
@@ -509,6 +516,49 @@ function calcSqrt(){
 function calcSquare(){
  let n=Number(document.getElementById("sciNum").value);
  document.getElementById("sciResult").innerHTML=n*n;
+}
+function calcCube(){
+ let n=Number(document.getElementById("sciNum").value);
+ document.getElementById("sciResult").innerHTML=n*n*n;
+}
+
+function calcLog(){
+ let n=Number(document.getElementById("sciNum").value);
+ document.getElementById("sciResult").innerHTML=Math.log10(n);
+}
+
+function calcLn(){
+ let n=Number(document.getElementById("sciNum").value);
+ document.getElementById("sciResult").innerHTML=Math.log(n);
+}
+
+function calcExp(){
+ let n=Number(document.getElementById("sciNum").value);
+ document.getElementById("sciResult").innerHTML=Math.exp(n);
+}
+
+function calcPow10(){
+ let n=Number(document.getElementById("sciNum").value);
+ document.getElementById("sciResult").innerHTML=Math.pow(10,n);
+}
+
+function calcInverse(){
+ let n=Number(document.getElementById("sciNum").value);
+ document.getElementById("sciResult").innerHTML=1/n;
+}
+
+function calcPercent(){
+ let n=Number(document.getElementById("sciNum").value);
+ document.getElementById("sciResult").innerHTML=n/100;
+}
+
+function calcFactorial(){
+ let n=Number(document.getElementById("sciNum").value);
+ let fact=1;
+ for(let i=1;i<=n;i++){
+   fact*=i;
+ }
+ document.getElementById("sciResult").innerHTML=fact;
 }
 </script>
 </body>
