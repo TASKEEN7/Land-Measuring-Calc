@@ -2,7 +2,14 @@
 <html>
 <head>
 <title>Patwari Land Calculator</title>
-
+<div style="position:absolute;top:15px;right:15px;">
+<select id="pageSelector" onchange="showSection()"
+style="padding:8px;border-radius:5px;">
+<option value="land">🏞️ Land Calculator</option>
+<option value="simple">🧮 Simple Calculator</option>
+<option value="scientific">🔬 Scientific Calculator</option>
+</select>
+</div>
 <style>
 body{
     margin:0;
@@ -103,6 +110,7 @@ button{
 <div class="header">
 🧮 🏞️ PATWARI LAND CALCULATOR
 </div>
+<div id="landSection">
 <div class="container">
 <h2>Entry 1</h2>
 Kanal
@@ -344,6 +352,8 @@ document.getElementById("result").innerHTML =
 }
 </script>
 </div>
+</div>
+
 <hr>
 
 <center>
@@ -384,7 +394,38 @@ Flood Spill Channel Division Narbal
    z-index:1000;">
    ?
 </a>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<div id="simpleSection" style="display:none;padding:20px;">
+<h2>🧮 Simple Calculator</h2>
+
+<input type="number" id="a" placeholder="First Number">
+<input type="number" id="b" placeholder="Second Number">
+
+<br><br>
+
+<button onclick="simpleAdd()" style="background:green;">+</button>
+<button onclick="simpleSub()" style="background:red;">-</button>
+<button onclick="simpleMul()" style="background:orange;">×</button>
+<button onclick="simpleDiv()" style="background:purple;">÷</button>
+
+<div class="result" id="simpleResult"></div>
+</div>
+
+<div id="scientificSection" style="display:none;padding:20px;">
+<h2>🔬 Scientific Calculator</h2>
+
+<input type="number" id="sciNum" placeholder="Enter Number">
+
+<br><br>
+
+<button onclick="calcSin()">sin</button>
+<button onclick="calcCos()">cos</button>
+<button onclick="calcTan()">tan</button>
+<button onclick="calcSqrt()">√</button>
+<button onclick="calcSquare()">x²</button>
+
+<div class="result" id="sciResult"></div>
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
 async function downloadPDF() {
@@ -397,6 +438,73 @@ async function downloadPDF() {
     doc.text(result, 20, 40);
 
     doc.save("Land_Calculation_Result.pdf");
+}
+</script>
+<script>
+function showSection(){
+ let page=document.getElementById("pageSelector").value;
+
+ document.getElementById("landSection").style.display="none";
+ document.getElementById("simpleSection").style.display="none";
+ document.getElementById("scientificSection").style.display="none";
+
+ if(page=="land")
+ document.getElementById("landSection").style.display="block";
+
+ if(page=="simple")
+ document.getElementById("simpleSection").style.display="block";
+
+ if(page=="scientific")
+ document.getElementById("scientificSection").style.display="block";
+}
+
+function simpleAdd(){
+ let a=Number(document.getElementById("a").value);
+ let b=Number(document.getElementById("b").value);
+ document.getElementById("simpleResult").innerHTML=a+b;
+}
+
+function simpleSub(){
+ let a=Number(document.getElementById("a").value);
+ let b=Number(document.getElementById("b").value);
+ document.getElementById("simpleResult").innerHTML=a-b;
+}
+
+function simpleMul(){
+ let a=Number(document.getElementById("a").value);
+ let b=Number(document.getElementById("b").value);
+ document.getElementById("simpleResult").innerHTML=a*b;
+}
+
+function simpleDiv(){
+ let a=Number(document.getElementById("a").value);
+ let b=Number(document.getElementById("b").value);
+ document.getElementById("simpleResult").innerHTML=a/b;
+}
+
+function calcSin(){
+ let n=Number(document.getElementById("sciNum").value);
+ document.getElementById("sciResult").innerHTML=Math.sin(n);
+}
+
+function calcCos(){
+ let n=Number(document.getElementById("sciNum").value);
+ document.getElementById("sciResult").innerHTML=Math.cos(n);
+}
+
+function calcTan(){
+ let n=Number(document.getElementById("sciNum").value);
+ document.getElementById("sciResult").innerHTML=Math.tan(n);
+}
+
+function calcSqrt(){
+ let n=Number(document.getElementById("sciNum").value);
+ document.getElementById("sciResult").innerHTML=Math.sqrt(n);
+}
+
+function calcSquare(){
+ let n=Number(document.getElementById("sciNum").value);
+ document.getElementById("sciResult").innerHTML=n*n;
 }
 </script>
 </body>
