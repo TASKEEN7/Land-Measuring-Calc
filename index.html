@@ -142,7 +142,7 @@ SFT
 
 <button onclick="clearFields()" style="background:black;">Clear</button>
 
-<button onclick="window.print()" style="background:teal;">Print</button>
+<button onclick="downloadPDF()">📄 Download PDF</button>
 </div>
     <div class="result"id="result">
 Result will appear here
@@ -382,5 +382,20 @@ Flood Spill Channel Division Narbal
    z-index:1000;">
    ?
 </a>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+async function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const result = document.getElementById("result").innerText;
+
+    doc.text("Land Calculation Result", 20, 20);
+    doc.text(result, 20, 40);
+
+    doc.save("Land_Calculation_Result.pdf");
+}
+</script>
 </body>
 </html>
