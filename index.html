@@ -397,17 +397,40 @@ Flood Spill Channel Division Narbal
 <div id="simpleSection" style="display:none;padding:20px;">
 <h2>🧮 Simple Calculator</h2>
 
-<input type="number" id="a" placeholder="First Number">
-<input type="number" id="b" placeholder="Second Number">
+<input type="text" id="calcDisplay"
+style="width:95%;padding:15px;font-size:24px;text-align:right;">
 
 <br><br>
 
-<button onclick="simpleAdd()" style="background:green;">+</button>
-<button onclick="simpleSub()" style="background:red;">-</button>
-<button onclick="simpleMul()" style="background:orange;">×</button>
-<button onclick="simpleDiv()" style="background:purple;">÷</button>
+<button onclick="addToDisplay('7')" class="add-btn">7</button>
+<button onclick="addToDisplay('8')" class="add-btn">8</button>
+<button onclick="addToDisplay('9')" class="add-btn">9</button>
+<button onclick="addToDisplay('/')" class="divide-btn">÷</button>
 
-<div class="result" id="simpleResult"></div>
+<br>
+
+<button onclick="addToDisplay('4')" class="add-btn">4</button>
+<button onclick="addToDisplay('5')" class="add-btn">5</button>
+<button onclick="addToDisplay('6')" class="add-btn">6</button>
+<button onclick="addToDisplay('*')" class="multiply-btn">×</button>
+
+<br>
+
+<button onclick="addToDisplay('1')" class="add-btn">1</button>
+<button onclick="addToDisplay('2')" class="add-btn">2</button>
+<button onclick="addToDisplay('3')" class="add-btn">3</button>
+<button onclick="addToDisplay('-')" class="subtract-btn">-</button>
+
+<br>
+
+<button onclick="addToDisplay('0')" class="add-btn">0</button>
+<button onclick="addToDisplay('.')" class="add-btn">.</button>
+<button onclick="calculateResult()" class="convert-btn">=</button>
+<button onclick="addToDisplay('+')" style="background:green;">+</button>
+
+<br>
+
+<button onclick="clearCalc()" class="clear-btn">C</button>
 </div>
 
 <div id="scientificSection" style="display:none;padding:20px;">
@@ -469,28 +492,22 @@ function showSection(){
  document.getElementById("scientificSection").style.display="block";
 }
 
-function simpleAdd(){
- let a=Number(document.getElementById("a").value);
- let b=Number(document.getElementById("b").value);
- document.getElementById("simpleResult").innerHTML=a+b;
+function addToDisplay(value){
+ document.getElementById("calcDisplay").value += value;
 }
 
-function simpleSub(){
- let a=Number(document.getElementById("a").value);
- let b=Number(document.getElementById("b").value);
- document.getElementById("simpleResult").innerHTML=a-b;
+function calculateResult(){
+ try{
+   document.getElementById("calcDisplay").value =
+   eval(document.getElementById("calcDisplay").value);
+ }
+ catch{
+   alert("Invalid Expression");
+ }
 }
 
-function simpleMul(){
- let a=Number(document.getElementById("a").value);
- let b=Number(document.getElementById("b").value);
- document.getElementById("simpleResult").innerHTML=a*b;
-}
-
-function simpleDiv(){
- let a=Number(document.getElementById("a").value);
- let b=Number(document.getElementById("b").value);
- document.getElementById("simpleResult").innerHTML=a/b;
+function clearCalc(){
+ document.getElementById("calcDisplay").value="";
 }
 
 function calcSin(){
